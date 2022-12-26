@@ -11,6 +11,18 @@ export default function Navbar(props) {
 				setState([copyData[index]]);
 			}
 		}
+		let navElement = e.target.parentElement;
+		let allbuttons = navElement.querySelectorAll("button");
+		for (let index = 0; index < allbuttons.length; index++) {
+			allbuttons[index].setAttribute("index", index);
+			if (e.target.attributes.index === allbuttons[index].attributes.index) {
+				allbuttons[index].className =
+					"bg-white mt-4 ml-2 p-2 text-black border-solid border-2 border-black";
+			} else {
+				allbuttons[index].className =
+					"bg-black mt-4 ml-2 p-2 text-white rounded";
+			}
+		}
 	};
 	function handleClick(e) {
 		if (e.target.value == "") {
@@ -43,7 +55,7 @@ export default function Navbar(props) {
 				{props.data.map((house) => {
 					return (
 						<button
-							className="h-10  m-5 border-solid border-2 bg-red-200	 border-indigo-600"
+							className="bg-black mt-4 ml-2 p-2 text-white rounded"
 							onClick={filter}
 						>
 							{house.name}
